@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.0/css/normalize.css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.0/css/foundation.css"/>
+<link rel="stylesheet" href="style.css"/>
+<style type="text/css">
+	body {
+		background-color: #006699;
+		font-family: 'Roboto Slab', serif;
+	}
+	#seller_navbar {
+		margin: 10px auto;
+		width: 440px;
+		border: 1px solid black;
+		border-radius: 7px;
+		background-color: white;
+		padding: 20px;
+		margin-top: 30px;
+	}
+	textarea {
+		height: 200px;
+	}
+	#products{
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+		margin-top: 40px;
+	}
+	#body_content {
+		width: 85%;
+		margin: 0 auto;
+		/*margin-left: 30px;*/
+		margin-top: 20px;
+	}
+	.small input {
+		width: 200px;
+		display: inline-block;
+	}
+
+	.small {
+		display: inline-block;
+	}
+	#space {
+		display: inline-block;
+		width: 25px;
+	}
+	table, h1 {
+		width: 850px;
+		margin: 0 auto;
+	}
+	th{
+		text-align: center;
+	}
+	#container {
+		font-family: 'Roboto Slab', serif;
+	}
+
+	.entry {
+		border: 1px solid black;
+		border-radius: 7px;
+		background-color: white;
+		width: 250px;
+		height: 360px;
+		margin: 15px;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	#b_update{
+		width: 200px;
+		height: 75px;
+		margin: 10px auto;
+	}
+	.entry img{
+		height: 167px;
+	}
+	.entry p{
+		margin-bottom: 0px;
+	}
+
+</style>
+<div id='container' ng-controller='productsController'>
+	<h1>    Welcome Chef</h1>
+	
+		<table>
+		<caption>Please remember to update status changes</caption>
+		<col width='15%'>
+		<col width='15%'>
+		<col width='25%'>
+		<col width='10%'>
+		<col width='10%'>
+		<col width='20%'>
+		<thead>
+			<th>Date Ordered</th>
+			<th>Customer</th>
+			<th>Product</th>
+			<th>Quantity</th>
+			<th>Total</th>
+			<th>Status</th>
+		</thead>
+		<tr ng-repeat="order in orders | orderBy: ['status', 'dateOrdered' ]">
+			<td>{{order.dateOrdered | date: YYY/mm/dd }}</td>
+			<td>{{order.customer}}</td>
+			<td>{{order.name}}</td>
+			<td>{{order.quantity}}</td>
+			<td>${{order.total}}</td>
+			<td>
+			<form>
+				<select ng-model = 'order.status'>
+					<option>Pending</option>
+					<option>Ready for Pickup</option>
+					<option>Served</option>
+				</select>
+				<input type='submit' value='save' ng-click='orderStatus(order)'>
+			</form>
+			</td>
+		</tr>
+	</table>
+	<div id='body_content'>
+<div id='products'>
+<!-- 	<ul class="product-list small-block-grid-3">	 -->
+	<div class='entry' ng-repeat='product in products'>
+		<figure>
+			<img width='180px' height='180px' src={{product.url}}>
+		</figure>
+		<figcaption>
+			<p>{{product.product}}</p>
+			<p>$ {{product.price}}</p>
+			<a href='#updateProduct/{{product._id}}'>
+				<button class='b_update'>Experiment</button></a>
+		</figcaption>
+	</div>
+<!-- </ul> -->
+</div>
+<span id='space'> </span>
+	<div id='seller_navbar'>
+	
+	<form>
+		<h4>Add a product.</h4>
+		<strong>Product: </strong><input type='text' ng-model='newP.product'>
+		<div class='small'>
+		<strong>Price ($): </strong><br><input type='number' ng-model='newP.price'>
+		</div>
+		<div class='small'>
+		<strong>Serving: </strong><br><input type='text' ng-model='newP.serving'>
+		</div>
+		<br>
+		<strong>Description: </strong><textarea ng-model='newP.description'></textarea>
+		<strong>Ingredients: </strong><textarea ng-model='newP.ingredients'></textarea>
+		
+	    <input type='submit' width='150px' height='100px' value='add' ng-click='productAdd()'>
+	</form>
+</div>
+</div>
+</div>

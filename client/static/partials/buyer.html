@@ -1,0 +1,73 @@
+
+<div ng-controller='storeController'>
+<style>
+body{
+    font-family: 'Roboto Slab', serif;
+    background: url('../../uploads/oreocupcake.jpeg');
+    background-size: cover;
+}
+.item_entry{
+    width: 250px;
+    height: 300px;
+/*    border: 1px solid #337AB7;*/
+    display: inline-block;
+    margin: 10px;
+    background-color: white;
+}
+.products{
+    width: 200px;
+    height: 200px;
+    border: 1px solid white;
+}
+.products p{
+    text-align: left;
+}
+#cart{
+    display: inline-block;
+}
+h2{
+    display: inline-block;
+    margin-left: 200px;
+}
+#buyer_nav_bar{
+    display: inline;
+}
+#product_container{
+    text-align: center;
+}
+#product_list{
+    padding: 0px 50px;
+    /*background-image: url('../../uploads/oreocupcake.jpeg');*/
+}
+a:hover {
+    text-decoration: none;
+}
+
+a:hover div{
+    width: 250px;
+    height: 300px;
+    background: lightgrey;
+    border: 3px solid #337AB7;
+    color: grey;
+    text-decoration: none;
+}
+</style>
+<div id="product_list">
+    <div id='buyer_nav_bar'>
+        <h2>Products</h2> | 
+        <a id='cart' href='#checkout'>Cart</a>
+    </div>
+    <div id='product_container'>
+        <div class='item_entry' ng-repeat="product in products | filter: filter_name | orderBy:'price' ">
+            <a ng-href='#/productDetail/{{product._id}}'>
+            <div class='item_info'>
+            <h4>{{product.product}} </h4>
+            <img class='products' src='{{product.url}}'>
+            <p>Price: ${{product.price}} <br> Serving: {{product.serving}}</p>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+

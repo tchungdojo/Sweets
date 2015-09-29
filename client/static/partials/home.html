@@ -1,0 +1,139 @@
+<div ng-controller='usersController'>
+<style type="text/css">
+  /*body{ 
+    background: url(https://youtu.be/dkyq3sqlb0I?t=6s) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }*/
+  button {
+    margin: auto 0;
+    font-family: 'Poiret One', cursive;
+
+  }
+  #buttons {
+  text-align: center;
+  margin-top: 5%;
+  background: black;
+  padding: 100px;
+  opacity: 0.7;
+
+  }
+  .btn {
+    height: 100px;
+    width: 200px;
+    font-size: 25px;
+  }
+  #space {
+    height: 1px;
+    width: 150px;
+    display: inline-block;
+  }
+  /*.form-group.last { margin-bottom:0px; }*/
+  #loginmodal-container {
+    height: 280px;
+  }
+  #slogon{
+    color: white;
+  }
+  #video_wrapper { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    
+    background-size: cover;
+    transition: 1s opacity;
+  }
+</style>
+  <!-- Large modal -->
+
+  <body>
+  <video id='video_wrapper' autoplay>
+    <source src="./static/css/falling_food.webm" type="video/webm">
+    <source src="./static/css/falling_food.mp4" type="video/mp4">
+  </video>
+  
+  <!-- Seller Login / Registration -->
+  <div id='buttons'>
+  <h3 id='slogon'>Whether you are a culinary wizard or chocolate fanatic, you belong with us in this mixing pot of sweetness! Share homemade delicacies to savoring your neightbor's aunt Betty double chocolate cake!</h3>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_1">
+    Sweet Heaven
+  </button>
+  <p id='space' ng-repeat = 'error in errors'>
+      {{error}}  
+  </p>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_2">
+    Patissier
+  </button>
+  </div>
+  
+  <!-- USER Modal -->
+  <div class="modal fade" id="myModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Login | Registration</h4>
+        </div>
+        <div class="modal-body">
+          <div id="loginmodal-container">
+            <h4>Login to Your Account</h4><br>
+
+            <form>
+            <input type="text" ng-model="nUser.email" placeholder="Email"><br>
+            <input type="password" ng-model="nUser.password" placeholder="Password">
+            <input type="submit" class="login loginmodal-submit" value="Login" data-dismiss='modal' data-backdrop='false' ng-click='userLogin()'>
+            </form>
+            
+            <h4>Register</h4><br>
+            <div ng-repeat = 'message in messages'>
+              {{message}}  
+            </div>
+            
+            <form>
+            <input type="text" ng-model="newU.first_name" placeholder="First Name">
+            <input type="text" ng-model="newU.last_name" placeholder="Last Name"><br>
+            <input type="text" ng-model="newU.email" placeholder="Email"><br>
+            <input type="password" ng-model="newU.password" placeholder="Password"><br>
+            <input type='phone' ng-model='newU.phone' placeholder="ex) 123-456-7891">
+            <input type="submit" class="login loginmodal-submit" value="Register" ng-click='addUser()'>
+            </form>
+            </div>
+          </div>
+
+      <div class="modal-footer">
+          <button type="button" class="btnn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- VENDOR Login -->
+  <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Login</h4>
+        </div>
+        <div class="modal-body">
+            <h4>Login to Your Account</h4><br>
+            <form>
+              <input type="text" ng-model="cSeller.email" placeholder="Email">
+              <input type="password" ng-model="cSeller.password" placeholder="Password">
+            <div class="modal-footer">
+              <button type="button" class="btnn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" data-dismiss='modal' data-backdrop='false' class="btnn btn-primary" ng-click='sellerLogin()'>Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+ </div>
+</body>

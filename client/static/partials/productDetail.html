@@ -1,0 +1,132 @@
+<div ng-controller="storeController">
+<style type="text/css">
+body{
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    background: url(http://www.loafonline.co.uk/wp-content/uploads/2013/07/IMG_6033.jpg);
+    background-size: cover;
+}
+#map {
+    height:200px;
+    width:300px;
+}
+#product_list{
+    padding: 0px 50px;
+    
+}
+#product_img{
+    height: 250px;
+    width: 250px;
+    display: inline-block;
+}
+#info{
+    display: inline-block;
+}
+
+#info img{
+    display: inline-block;
+}
+
+#info th{
+    padding-right: 10px;
+}
+
+#info tr{
+    margin-bottom: 5px;
+}
+
+#buyer_info{
+    display: inline-block;
+    vertical-align: top;
+}
+#big{
+    display: inline-block;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    width: 50%;
+    padding: 20px ;
+}
+
+#map{
+    display: inline-block;
+}
+#map_container{
+    margin-left: 100px;
+    background: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    width: 60%;
+    padding: 20px ;
+}
+form{
+    margin-left: 200px;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+
+}
+input, textarea{
+    display: block;
+    color: black;
+}   
+a{
+    font-size: 14px;
+    color: skyblue;
+}
+#product{
+    margin-bottom: 30px;
+}
+h2{
+    color: white;
+}
+</style>
+<div id=product_list>
+    <h2>{{goto_product.product}} | <a ng-href='#buyer'>Bakery</a></h2> 
+    
+    <div id='product'>
+        <div id='big'>
+            <img id='product_img' src={{goto_product.url}}>
+            <div id='info'>
+            <table>
+                <tr>
+                <th valign='top' >Serving: </th><td> {{goto_product.serving}}</td>
+                </tr>
+                <tr>
+                <th valign='top'>Price: </th><td> ${{goto_product.price}}</td>
+                </tr>
+                <tr>
+                <th valign='top'>Description:</th><td> {{goto_product.description}}</td>
+                </tr>
+                <tr>
+                <th valign='top'>Ingredients: </th><td> {{goto_product.ingredients}}</td>
+                </tr>
+
+            </table>
+            </div>
+        </div>
+        <form>
+            Total: ${{order.quantity * goto_product.price | number: 2}}
+            <br>
+            Quantity: <input type='number' ng-model='order.quantity'>
+            <br>
+            Comments:
+            <textarea id='goto_product_comment' ng-model='order.comment'></textarea>
+            <br>
+            <input type='submit' value='Add to Cart!' ng-click='orderAdd(goto_product,order)'>
+        </form>
+    </div>
+    <div id='map_container'>
+    <div id='buyer_info'>
+        <p>Seller: {{goto_product._confectioner.name}}</p>
+        <p>Email (question?): {{goto_product._confectioner.email}}</p>
+        <p>Address: {{goto_product._confectioner.address}}</p>
+    </div>
+
+        <div id="map"></div>
+    </div>
+    
+    
+    
+        
+</div>

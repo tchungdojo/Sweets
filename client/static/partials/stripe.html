@@ -1,0 +1,73 @@
+<style>
+body {
+  font-family: 'Roboto Slab', serif;
+  background: url(http://www.blogto.com/listings/bakery/upload/2014/07/20140718-home590-09.jpg) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+#cart {
+  width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+#order {
+  margin-bottom: 80px;
+}
+a{
+  font-size: 12px;
+  font: skyblue;
+}
+h3{
+  margin-bottom: 20px;
+}
+</style>
+<div id="cart" ng-controller="ordersController">
+
+<div ng-controller='stripeController'>
+<h3>Checkout | <a ng-href='#buyer'>Bakery</a></h3>
+  <h4>Order Information</h4>
+  <div id='order'>
+  <table class="table table-striped">
+    <col width='40%'>
+    <col width='15%'>
+    <col width='15%'>
+    <col width='30%'>
+    <tr>
+    <theader>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Total ($)</th>
+        <th>Comments</th>
+    </theader>
+    </tr>
+    <tr class='item_order' ng-repeat="order in orders">
+      <td>{{order.item.product}}</td>
+      <td>{{order.order.quantity}}</td>
+      <td>{{order.item.price}}</td>
+      <td>{{order.order.comment}}</td>
+    </tr>
+  </table>
+</div>
+<div id='payment'>
+<h4>Payment Information</h4>
+<form stripe-form="stripeCallback" name="checkoutForm">
+    <input ng-model="number" placeholder="Card Number" 
+             payments-format="card" payments-validate="card" name="card" />
+    <input ng-model="expiry" placeholder="Expiration" 
+             payments-format="expiry" payments-validate="expiry"                
+             name="expiry" />
+    <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc" />
+    <button type="submit" ng-click='checkout()'>Submit</button>
+</form> 
+</div>
+</div>
+
+</div>
+
+
