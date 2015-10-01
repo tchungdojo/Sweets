@@ -28,6 +28,6 @@ var upload = multer({storage: storage});
 require('./config/mongoose.js');
 require('./config/routes.js')(app, upload);
 
-app.listen(8888, function(){
-	console.log('we are listening on port 8888');
+app.listen(8000, function(){
+	console.log('we are listening on port 8000');
 })
