@@ -15,9 +15,9 @@ module.exports = function(app, upload){
 	app.post('/editProduct', function(req, res){
 		Product.editProduct(req, res);
 	})
-	app.post('/imgUpload', upload.single('file'), function (req, res, next) {
-		Product.updateUrl(req, res);
-	})
+	// app.post('/imgUpload', upload.single('file'), function (req, res, next) {
+	// 	Product.updateUrl(req, res);
+	// })
 	app.post('/cSeller_login', function(req, res){
 		Vendor.login(req, res);
 	})	

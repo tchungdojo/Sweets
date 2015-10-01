@@ -78,18 +78,18 @@ module.exports = (function() {
       })
   },
 
-  updateUrl: function(req, res){
-    console.log(req.file);
-    Product.update({_id:req.body.productId}, {url: '../../uploads/'+ req.file.filename}, 
-      function(err, results){
-        if(err) {
-         console.log('error in adding a product');
-          } else {
-         console.log('product has been updated!');
-            res.json(results)
-          }
-      })
-  },
+  // updateUrl: function(req, res){
+  //   console.log(req.file);
+  //   Product.update({_id:req.body.productId}, {url: '../../uploads/'+ req.file.filename}, 
+  //     function(err, results){
+  //       if(err) {
+  //        console.log('error in adding a product');
+  //         } else {
+  //        console.log('product has been updated!');
+  //           res.json(results)
+  //         }
+  //     })
+  // },
 
   productRemove: function(req, res) {
    console.log(req.body);
