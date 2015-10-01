@@ -1,4 +1,4 @@
-<div ng-controller="storeController">
+
 <style type="text/css">
 body{
     font-family: 'Roboto Slab', serif;
@@ -76,15 +76,16 @@ a{
 }
 #product{
     margin-bottom: 30px;
+    margin-top: 100px;
 }
 h2{
     color: white;
 }
 </style>
-<div id=product_list>
-    <h2>{{goto_product.product}} | <a ng-href='#buyer'>Bakery</a></h2> 
-    
+<div ng-controller="storeController">
+<div id='product_list'>
     <div id='product'>
+        <h2>{{goto_product.product}} | <a ng-href='#buyer'>Bakery</a></h2> 
         <div id='big'>
             <img id='product_img' src={{goto_product.url}}>
             <div id='info'>
@@ -122,11 +123,7 @@ h2{
         <p>Email (question?): {{goto_product._confectioner.email}}</p>
         <p>Address: {{goto_product._confectioner.address}}</p>
     </div>
-
         <div id="map"></div>
-    </div>
-    
-    
-    
-        
+    </div>    
 </div>
+
