@@ -65,7 +65,8 @@ module.exports = (function() {
         price: req.body.info.price,
         serving: req.body.info.serving,
         ingredients: req.body.info.ingredients,
-        description: req.body.info.description
+        description: req.body.info.description,
+        url: req.body.info.url
       },
       function(err){
         if(err) {
